@@ -167,6 +167,24 @@ router.get("/admin/registrytotal", (req, res) => {
   res.render("registry", { columnNames, data });
 });
 
+router.get("/admin/center", (req, res) => {
+  // Read the Excel file
+  const workbook = xlsx.readFile(
+    "public/stylesheets/vendor/fileExcel/ttdk.xlsx"
+  );
+
+  // Get the first worksheet
+  const worksheet = workbook.Sheets[workbook.SheetNames[0]];
+
+  // Convert worksheet to JSON
+  const data = xlsx.utils.sheet_to_json(worksheet);
+
+  // Take the first row from the data array
+  const columnNames = Object.keys(data[0]);
+
+  res.render("listCenter", { data });
+});
+
 router.get("/logout", (req, res) => {
   req.session.destroy((err) => {
     if (err) {
