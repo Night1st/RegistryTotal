@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>Quản Lý Đăng Kiểm</title>
+
+    <!-- liên kết css -->
+    <link
+      href="stylesheets/vendor/css/style.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="stylesheets/vendor/img/logo.jpg"
+    />
+    <!-- liên kết bootstrap css -->
+    <link
+      href="stylesheets/vendor/bootstrap/bootstrap.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="stylesheets/vendor/bootstrap/bootstrap.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="stylesheets/vendor/bootstrap/bootstrap-datetimepicker.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <!-- liên kết datatable css -->
+    <link
+      href="stylesheets/vendor/datatable/dataTables.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <!-- liên kết font css -->
+    <link
+      rel="stylesheet"
+      href="stylesheets/vendor/fontawesome/css/all.min.css"
+    />
+    <link
+      href="stylesheets/vendor/datatable/buttons.dataTables.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="stylesheets/vendor/datatable/select.dataTables.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    <style>
+      a {
+        color: black;
+      }
+      img {
+        max-width: 100%;
+      }
+      .para {
+        padding-top: 3.6em;
+      }
+      i {
+        cursor: pointer;
+      }
+      .users:hover .user {
+        display: block;
+      }
+
+      .user {
+        display: none;
+        position: absolute;
+        float: right;
+        z-index: 1;
+        right: 2%;
+        top: 30px;
+        background-color: white;
+        padding: 5px;
+        color: #046b7b;
+        width: 15rem;
+        box-shadow: rgba(0, 0, 0, 0.05) 2px 3px 3px;
+      }
+      @media screen and (max-width: 768px) {
+        .user {
+          display: none;
+          position: absolute;
+          float: left;
+          z-index: 10;
+          right: 0%;
+          top: -0.5em;
+          width: 15rem;
+        }
+      }
+    </style>
+    <title>Add User</title>
+  </head>
+  <body class="para">
+    <%- include('header'); -%>
+    <div style="height: 4em"></div>
+    <div class="modal-header" style="background-color: #f9d9b9b5">
+      <h4>Cấp tài khoản cho bên Trung Tâm Đăng Kiểm <b style="color: #a0a0f5; font-size: 25px"></b></h4>
+      
+    </div>
+
+    <form action="/admin/user/addUser" method="post">
+        <div class="modal-body">
+            <div class="col-md-12">
+              <div class="input-group-prepend">
+                <div class="w-25"><label>Tài Khoản</label></div>
+                <input type="text" class="form-control" name="account" required>
+              </div>
+              <div class="input-group-prepend">
+                <div class="w-25"><label>Mật Khẩu</label></div>
+                <input type="password" class="form-control" name="pass">
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="input-group-prepend">
+                <div class="w-25"><label>Tên Người Dùng</label></div>
+                <input type="text" class="form-control" name="name">
+              </div>
+              <div class="input-group-prepend">
+                <div class="w-25"><label>Trung Tâm</label></div>
+                <select class="form-control" name="center">
+                  <% data.forEach(row => { %>
+                    <option value="<%= row[columnNames[0]] %>"><%= row[columnNames[0]] %></option>
+                  <% }); %>
+                </select>
+              </div>
+              <div class="input-group-prepend">
+                <div class="w-25"><label>Khu Vực</label></div>
+                <input type="text" class="form-control" name="area">
+              </div>
+            </div>
+          </div>
+          <input type="submit" class="btn btn-success" value="Xác nhận"></button>
+    </form>
+  </body>
+</html>

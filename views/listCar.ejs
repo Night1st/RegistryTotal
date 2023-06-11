@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>Quản Lý Đăng Kiểm</title>
+
+    <!-- liên kết css -->
+    <link
+      href="stylesheets/vendor/css/style.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="stylesheets/vendor/img/logo.jpg"
+    />
+    <!-- liên kết bootstrap css -->
+    <link
+      href="stylesheets/vendor/bootstrap/bootstrap.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="stylesheets/vendor/bootstrap/bootstrap.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="stylesheets/vendor/bootstrap/bootstrap-datetimepicker.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <!-- liên kết datatable css -->
+    <link
+      href="stylesheets/vendor/datatable/dataTables.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <!-- liên kết font css -->
+    <link
+      rel="stylesheet"
+      href="stylesheets/vendor/fontawesome/css/all.min.css"
+    />
+    <link
+      href="stylesheets/vendor/datatable/buttons.dataTables.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="stylesheets/vendor/datatable/select.dataTables.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    <style>
+      a {
+        color: black;
+      }
+      img {
+        max-width: 100%;
+      }
+      .para {
+        padding-top: 3.6em;
+      }
+      i {
+        cursor: pointer;
+      }
+      .users:hover .user {
+        display: block;
+      }
+
+      .user {
+        display: none;
+        position: absolute;
+        float: right;
+        z-index: 1;
+        right: 2%;
+        top: 30px;
+        background-color: white;
+        padding: 5px;
+        color: #046b7b;
+        width: 15rem;
+        box-shadow: rgba(0, 0, 0, 0.05) 2px 3px 3px;
+      }
+      @media screen and (max-width: 768px) {
+        .user {
+          display: none;
+          position: absolute;
+          float: left;
+          z-index: 10;
+          right: 0%;
+          top: -0.5em;
+          width: 15rem;
+        }
+      }
+    </style>
+    
+    <title>Add User</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#tab1').click(function() {
+        $('#table2').hide();
+        $('#table1').show();
+      });
+      $('#tab2').click(function() {
+        $('#table1').hide();
+        $('#table').show();
+      });
+    });
+  </script>
+  </head>
+  <body class="para">
+    <%- include('header'); -%>
+    <div style="height: 4em"></div>
+    <div class="modal-header" style="background-color: #f9d9b9b5">
+      <h4>
+        Danh sách Xe đã đăng ký <b style="color: #a0a0f5; font-size: 25px"></b>
+      </h4>
+    </div>
+
+    <div class="container">
+      <ul class="nav nav-tabs">
+        <li class="nav item">
+          <a class="nav-link active" data-toggle="tab" href="#table1" id="tab1">Xe đã qua đăng ký</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#table2" id="tab2">Xe sắp hết hạn đăng kiểm</a>
+        </li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane fade show active" id="table1">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Họ tên</th>
+                <th scope="col">Hình thức</th>
+                <th scope="col">Nhãn hiệu</th>
+                <th scope="col">Ngày cũ Đăng kiểm</th>
+                <th scope="col">Ngày mới Đăng kiểm</th>
+                <th scope="col">Trung tâm đăng kiểm</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% result1.forEach(row => { %>
+              <tr>
+                <td><%=row.ten %></td>
+                <td><%=row.type %></td>
+                <td><%=row.nhanHieu %></td>
+                <td><%=row.ngayCuGiayDK %></td>
+                <td><%=row.ngayMoiGiayDK %></td>
+                <td><%=row.noiDk %></td>
+              </tr>
+              <%}); %>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="tab-pane fade" id="table2">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Họ tên</th>
+                <th scope="col">Hình thức</th>
+                <th scope="col">Nhãn hiệu</th>
+                <th scope="col">Ngày cũ Đăng kiểm</th>
+                <th scope="col">Ngày mới Đăng kiểm</th>
+                <th scope="col">Trung tâm đăng kiểm</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% result2.forEach(row => { %>
+              <tr>
+                <td><%=row.ten %></td>
+                <td><%=row.type %></td>
+                <td><%=row.nhanHieu %></td>
+                <td><%=row.ngayCuGiayDK %></td>
+                <td><%=row.ngayMoiGiayDK %></td>
+                <td><%=row.noiDk %></td>
+              </tr>
+              <%}); %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

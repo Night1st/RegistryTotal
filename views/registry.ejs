@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>Quản Lý Đăng Kiểm</title>
+
+    <!-- liên kết css -->
+    <link
+      href="stylesheets/vendor/css/style.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="stylesheets/vendor/img/logo.jpg"
+    />
+    <!-- liên kết bootstrap css -->
+    <link
+      href="stylesheets/vendor/bootstrap/bootstrap.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="stylesheets/vendor/bootstrap/bootstrap.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="stylesheets/vendor/bootstrap/bootstrap-datetimepicker.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <!-- liên kết datatable css -->
+    <link
+      href="stylesheets/vendor/datatable/dataTables.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <!-- liên kết font css -->
+    <link
+      rel="stylesheet"
+      href="stylesheets/vendor/fontawesome/css/all.min.css"
+    />
+    <link
+      href="stylesheets/vendor/datatable/buttons.dataTables.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="stylesheets/vendor/datatable/select.dataTables.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    <style>
+      a {
+        color: black;
+      }
+      img {
+        max-width: 100%;
+      }
+      .para {
+        padding-top: 3.6em;
+      }
+      i {
+        cursor: pointer;
+      }
+      .users:hover .user {
+        display: block;
+      }
+
+      .user {
+        display: none;
+        position: absolute;
+        float: right;
+        z-index: 1;
+        right: 2%;
+        top: 30px;
+        background-color: white;
+        padding: 5px;
+        color: #046b7b;
+        width: 15rem;
+        box-shadow: rgba(0, 0, 0, 0.05) 2px 3px 3px;
+      }
+      @media screen and (max-width: 768px) {
+        .user {
+          display: none;
+          position: absolute;
+          float: left;
+          z-index: 10;
+          right: 0%;
+          top: -0.5em;
+          width: 15rem;
+        }
+      }
+    </style>
+    <title>Add User</title>
+  </head>
+  <body class="para">
+    <%- include('header'); -%>
+    <div style="height: 4em"></div>
+    <div class="modal-header" style="background-color: #f9d9b9b5">
+      <h4>Tạo xe đã qua đăng ký <b style="color: #a0a0f5; font-size: 25px"></b></h4>
+      
+    </div>
+
+    <form action="/admin/registrytotal/registry" method="post">
+      <div class="col-md-12" style="border: 1px solid black;">
+        <div class="text-center">
+          <h5>Thông Tin Chủ Sở Hữu</h5>
+        </div>
+        <div class="flex">
+          <div class="col-md-6 margin">
+            <div class="flex">
+              <label class="w-33">Tên:</label><input type="text" name="ten" class="form form-control form-control-sm" placeholder="Tên">
+            </div>
+            <div class="flex">
+              <label class="w-33">Ngày Tháng Năm Sinh:</label><input type="date" name="ns" pattern="\d{4}-\d{2}-\d{2}" class="form form-control form-control-sm">
+            </div>
+            <div class="flex">
+              <label class="w-33">Số CMND:</label><input type="text" name="cmnd" class="form form-control form-control-sm" placeholder="Số CMND">
+            </div>
+          </div>
+          <div class="col-md-6 margin">
+            <div class="flex">
+              <label class="w-33">Địa Chỉ Thường Trú:</label><input type="text" name="address" class="form form-control form-control-sm" placeholder="Địa Chỉ Thường Trú">
+            </div>
+            <div class="flex">
+              <label class="w-33">Hình Thức:</label>
+              <select class="form form-control form-control-sm" name="type">
+                <option value=""></option>
+                <option value="Xe Cá Nhân">Xe Cá Nhân</option>
+                <option value="Xe Cơ Quan">Xe Cơ Quan</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-12" style="border: 1px solid black;">
+        <div class="text-center">
+          <h5>Thông Tin Giấy Chứng Nhận Đăng Ký</h5>
+        </div>
+        <div class="flex">
+          <div class="col-md-6 margin">
+            <div class="flex">
+              <label class="w-33">Mã Số Giấy Chứng Nhận:</label><input type="text" name="maSoGiay" class="form form-control form-control-sm" placeholder="Mã Số Giấy Chứng Nhận">
+            </div>
+          </div>
+          <div class="col-md-6 margin">
+            <div class="flex">
+              <label class="w-33">Ngày Cấp Giấy Chứng Nhận:</label><input type="date" name="ngayCapGiay" class="form form-control form-control-sm">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12" style="border: 1px solid black;">
+        <div class="text-center">
+          <h5>Thông Tin Đăng Kiểm</h5>
+        </div>
+        <div class="flex">
+          <div class="col-md-6 margin">
+            <div class="flex">
+              <label class="w-33">Ngày Đăng Kiểm Cũ:</label><input type="date" name="ngayCuGiayDK" class="form form-control form-control-sm" >
+            </div>
+          </div>
+          <div class="col-md-6 margin">
+            <div class="flex">
+              <label class="w-33">Ngày Đăng Kiểm Mới:</label><input type="date" name="ngayMoiGiayDK" class="form form-control form-control-sm" >
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12" style="border: 1px solid black;">
+        <div class="text-center">
+          <h5>Thông Tin Xe</h5>
+        </div>
+        <div class="flex">
+          <div class="col-md-6 margin">
+            <div class="flex">
+              <label class="w-33">Biển Số Xe:</label><input type="text" name="bienDK" class="form form-control form-control-sm" placeholder="Biển Số Xe">
+            </div>
+            <div class="flex">
+              <label class="w-33">Nơi Đăng Ký Xe:</label>
+              <select class="form form-control form-control-sm" name="noiDk">
+                <option value=""></option>
+                <% data.forEach(row => { %>
+                  <option value="<%= row[columnNames[0]] %>"><%= row[columnNames[0]] %></option>
+                <% }); %>
+              </select>
+            </div>
+            <div class="flex">
+              <label class="w-33">Mục Đích Sử Dụng:</label>
+              <!-- <input type="text" name="mucDich" class="form form-control form-control-sm" placeholder="Mục Đích Sử Dụng"> -->
+              <select name="mucDich" class="form form-control form-control-sm">
+                <option value=""></option>
+                <option value="Cá Nhân">Cá Nhân</option>
+                <option value="Kinh Doanh">Kinh Doanh</option>
+                <option value="Vận Tải">Vận Tải</option>
+                <option value="Quân Sự">Quân Sự</option>
+              </select>
+            </div>
+            <div class="flex">
+              <label class="w-33">Ảnh Xe:</label><input type="file" name="img" class="form form-control form-control-sm">
+            </div>
+            <div class="flex">
+              <label class="w-33">Nhãn Hiệu:</label><input type="text" name="nhanHieu" class="form form-control form-control-sm" placeholder="Nhãn Hiệu">
+            </div>
+            <div class="flex">
+              <label class="w-33">Năm Sản Xuất Xe:</label><input type="number" name="namSx" class="form form-control form-control-sm" placeholder="Năm Sản Xuất">
+            </div>
+            <div class="flex">
+              <label class="w-33">Nước Sản Xuất Xe:</label><input type="text" name="nuocSx" class="form form-control form-control-sm" placeholder="Nước Sản Xuất">
+            </div>
+            <div class="flex">
+              <label class="w-33">Màu Xe:</label><input type="text" name="mauSon" class="form form-control form-control-sm" placeholder="Màu Xe">
+            </div>
+            <div class="flex">
+              <label class="w-33">Số Máy:</label><input type="text" name="soMay" class="form form-control form-control-sm" placeholder="Số Máy">
+            </div>
+            <div class="flex">
+              <label class="w-33">Số Khung:</label><input type="text" name="soKhung" class="form form-control form-control-sm" placeholder="Số Khung">
+            </div>
+          </div>
+          <div class="col-md-6 margin">
+            <div class="flex">
+              <label class="w-33">Số Loại:</label><input type="text" name="soLoai" class="form form-control form-control-sm" placeholder="Số Loại">
+            </div>
+            <div class="flex">
+              <label class="w-33">Dung Tích:</label><input type="text" name="dungTich" class="form form-control form-control-sm" placeholder="Dung Tích">
+            </div>
+            <div class="flex">
+              <label class="w-33">Số Chỗ Ngồi:</label><input type="number" name="soChoNgoi" class="form form-control form-control-sm" placeholder="Số Chỗ Ngồi">
+            </div>
+            <div class="flex">
+              <label class="w-33">Công Thức Bánh Xe:</label><input type="text" name="congThuc" class="form form-control form-control-sm" placeholder="Công Thức Bánh Xe">
+            </div>
+            <div class="flex">
+              <label class="w-33">Vết Bánh Xe:</label><input type="text" name="vetBanhXe" class="form form-control form-control-sm" placeholder="Vết Bánh Xe">
+            </div>
+            <div class="flex">
+              <label class="w-33">Chiều Dài Cơ Sở:</label><input type="text" name="chieuDai" class="form form-control form-control-sm" placeholder="Chiều Dài Cơ Sở">
+            </div>
+            <div class="flex">
+              <label class="w-33">Khối Lượng Bản Thân:</label><input type="text" name="khoiLuong" class="form form-control form-control-sm" placeholder="Khối Lượng Bản Thân">
+            </div>
+            <div class="flex">
+              <label class="w-33">Loại Nhiên Liệu:</label><input type="text" name="loaiNhienLieu" class="form form-control form-control-sm" placeholder="Loại Nhiên Liệu">
+            </div>
+            <div class="flex">
+              <label class="w-33">Công Suất:</label><input type="text" name="congSuat" class="form form-control form-control-sm" placeholder="Công Suất">
+            </div>
+            <div class="flex">
+              <label class="w-33">Tốc Độ Quay:</label><input type="text" name="tocDoQuay" class="form form-control form-control-sm" placeholder="Tốc Độ Quay">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center">
+        <input type="submit" class="btn btn-success" value="Xác nhận đăng kiểm"></button>
+      </div>
+    </form>
+  </body>
