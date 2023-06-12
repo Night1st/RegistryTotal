@@ -18,7 +18,8 @@ var app = express();
 app.use(session({
   secret : 'registrytotal',
   resave : true,
-  saveUninitialized : true
+  saveUninitialized : true,
+  cookie : { secure: false, maxAge: 360000 } 
 }));
 
 // view engine setup

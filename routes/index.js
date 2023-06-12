@@ -1,8 +1,11 @@
 var express = require("express");
 var router = express.Router();
 var xlsx = require("xlsx");
+var cookieParser = require("cookie-parser")
 
 var database = require("../database");
+
+router.use(cookieParser())
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
@@ -25,7 +28,7 @@ router.post("/login", (req, res) => {
         // Đăng nhập thành công cho người dùng
         req.session.loggedin = true;
         req.session.username = results[0];
-
+        //res.cookie('loggedIn', req.session.loggedin, cookieOptions)
         res.redirect("/home");
         // res.status(200).json({ message: 'Đăng nhập thành công cho người dùng.' });
       } else {
@@ -42,7 +45,7 @@ router.post("/login", (req, res) => {
               // Đăng nhập thành công cho admin
               req.session.loggedin = true;
               req.session.username = adminResults[0];
-
+              //res.cookie('loggedIn', req.session.loggedin, cookieOptions)
               res.redirect("/admin");
             } else {
               // Sai tên đăng nhập hoặc mật khẩu
@@ -190,6 +193,7 @@ router.get("/logout", (req, res) => {
     if (err) {
       console.log(err);
     }
+    res.clearCookie('loggedIn')
     res.redirect("/");
   });
 });

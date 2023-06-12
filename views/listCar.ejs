@@ -102,40 +102,41 @@
         }
       }
     </style>
-    
+
     <title>Add User</title>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-  <script>
-    $(document).ready(function() {
-      $('#tab1').click(function() {
-        $('#table2').hide();
-        $('#table1').show();
-      });
-      $('#tab2').click(function() {
-        $('#table1').hide();
-        $('#table').show();
-      });
-    });
-  </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   </head>
   <body class="para">
-    <%- include('header'); -%>
-    <div style="height: 4em"></div>
+    <%- include('header'); -%> <%- include('navAdmin'); -%>
     <div class="modal-header" style="background-color: #f9d9b9b5">
       <h4>
         Danh sách Xe đã đăng ký <b style="color: #a0a0f5; font-size: 25px"></b>
       </h4>
     </div>
 
-    <div class="container">
-      <ul class="nav nav-tabs">
-        <li class="nav item">
-          <a class="nav-link active" data-toggle="tab" href="#table1" id="tab1">Xe đã qua đăng ký</a>
+    <div class="container-fluid">
+      <ul class="nav nav-tabs" id="table">
+        <li class="nav-item active">
+          <a
+            class="nav-link"
+            data-toggle="tab"
+            data-bs-target="#default"
+            href="#table1"
+            id="tab1"
+            >Xe đã qua đăng ký</a
+          >
         </li>
         <li class="nav-item">
-          <a class="nav-link" data-toggle="tab" href="#table2" id="tab2">Xe sắp hết hạn đăng kiểm</a>
+          <a
+            class="nav-link"
+            data-toggle="tab"
+            data-bs-target="#expiring"
+            href="#table2"
+            id="tab2"
+            >Xe sắp hết hạn đăng kiểm</a
+          >
         </li>
       </ul>
 
@@ -158,8 +159,8 @@
                 <td><%=row.ten %></td>
                 <td><%=row.type %></td>
                 <td><%=row.nhanHieu %></td>
-                <td><%=row.ngayCuGiayDK %></td>
-                <td><%=row.ngayMoiGiayDK %></td>
+                <td><%=(row.ngayCuGiayDK.getDate())+ "/" +(row.ngayCuGiayDK.getMonth() + 1)+ "/" +(row.ngayCuGiayDK.getFullYear()) %></td>
+                <td><%=(row.ngayMoiGiayDK.getDate())+ "/" +(row.ngayMoiGiayDK.getMonth() + 1)+ "/" +(row.ngayMoiGiayDK.getFullYear()) %></td>
                 <td><%=row.noiDk %></td>
               </tr>
               <%}); %>
@@ -185,8 +186,8 @@
                 <td><%=row.ten %></td>
                 <td><%=row.type %></td>
                 <td><%=row.nhanHieu %></td>
-                <td><%=row.ngayCuGiayDK %></td>
-                <td><%=row.ngayMoiGiayDK %></td>
+                <td><%=(row.ngayCuGiayDK.getDate())+ "/" +(row.ngayCuGiayDK.getMonth() + 1)+ "/" +(row.ngayCuGiayDK.getFullYear()) %></td>
+                <td><%=(row.ngayMoiGiayDK.getDate())+ "/" +(row.ngayMoiGiayDK.getMonth() + 1)+ "/" +(row.ngayMoiGiayDK.getFullYear()) %></td>
                 <td><%=row.noiDk %></td>
               </tr>
               <%}); %>
