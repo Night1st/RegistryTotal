@@ -112,7 +112,9 @@
         <div class="container-fluid">
           <ul class="navbar-nav">
             <li class="nav-item col-lg-4">
-              <a class="nav-link active" href="/admin/user">Cấp tài khoản Trung Tâm</a>
+              <a class="nav-link active" href="/admin/user"
+                >Cấp tài khoản Trung Tâm</a
+              >
             </li>
             <li class="nav-item col-3">
               <a class="nav-link" href="/admin/center">Danh sách Trung Tâm</a>
@@ -121,19 +123,23 @@
               <a class="nav-link" href="/admin/car">Danh sách Xe</a>
             </li>
             <li class="nav-item col-3">
-              <a class="nav-link" href="/admin/registrytotal">Tạo xe đã đăng kiểm</a>
+              <a class="nav-link" href="/admin/registrytotal"
+                >Tạo xe đã đăng kiểm</a
+              >
             </li>
           </ul>
         </div>
       </nav>
     </div>
-    
-    <div ></div>
+
+    <div></div>
     <h1>Welcome, Admin</h1>
 
-    <br>
+    <br />
     <table class="table caption-top">
-      <caption>Danh sách tài khoản của từng trung tâm</caption>
+      <caption>
+        Danh sách tài khoản của từng trung tâm
+      </caption>
       <thead>
         <tr>
           <th scope="col">Tài khoản</th>
@@ -145,22 +151,19 @@
       </thead>
       <tbody>
         <% data.forEach(row => { %>
-          
-          <tr onclick="editRow(<%= row.id %>)">
+        <tr>
           <td><%=row.account %></td>
           <td><%=row.pass %></td>
           <td><%=row.name %></td>
           <td><%=row.center %></td>
           <td><%=row.area %></td>
+          <td>
+            <a href="/admin/editUser/<%= row.id %>">Chỉnh sửa</a>
+          </td>
         </tr>
         <%}); %>
-      </tbody>  
+      </tbody>
     </table>
     <%- include('footer'); -%>
-    <script>
-      function editRow(id) {
-        window.location.href = `/admin/editUser/${id}`
-      }
-    </script>
   </body>
 </html>

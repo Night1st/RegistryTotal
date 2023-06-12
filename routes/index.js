@@ -64,7 +64,7 @@ router.get("/home", (req, res) => {
 
     //const { ten, cmnd, type, loaiPhuongTien, nhanHieu, bienDK, noiDk } = req.body;
 
-    const query = `select owner.ten, owner.type, car.nhanHieu, car.ngayCuGiayDK, car.ngayMoiGiayDK from owner inner join car ON owner.id = car.id WHERE car.noiDk = ?`;
+    const query = `select car.id, owner.ten, owner.type, car.nhanHieu, car.ngayCuGiayDK, car.ngayMoiGiayDK from owner inner join car ON owner.id = car.id WHERE car.noiDk = ?`;
     //const value = [ten, cmnd, type, loaiPhuongTien, nhanHieu, bienDK, noiDk];
 
     database.query(query, [user.center], (error, result) => {

@@ -11,6 +11,7 @@ var addUserRouter = require('./routes/addUser');
 var editUserRouter = require('./routes/editUser')
 var listCarRouter = require('./routes/listCar')
 var registryRouter = require('./routes/registry')
+var infoCarRouter = require('./routes/viewCar')
 
 var app = express();
 
@@ -36,6 +37,7 @@ app.use('/admin/user', addUserRouter)
 app.use('/admin/edit/:id', editUserRouter)
 app.use('/admin/car', listCarRouter)
 app.use('/admin/registrytotal', registryRouter)
+app.use('/home', infoCarRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -114,6 +114,7 @@
     <table class="table">
       <thead>
         <tr>
+          <th scope="col">Id</th>
           <th scope="col">Họ tên</th>
           <th scope="col">Hình thức</th>
           <th scope="col">Nhãn hiệu</th>
@@ -124,11 +125,15 @@
       <tbody>
         <% data.forEach(row => { %>
         <tr>
+          <td><%=row.id %></td>
           <td><%=row.ten %></td>
           <td><%=row.type %></td>
           <td><%=row.nhanHieu %></td>
           <td><%=row.ngayCuGiayDK %></td>
           <td><%=row.ngayMoiGiayDK %></td>
+          <td>
+            <a href="/home/<%= row.id %>">Giấy đăng kiểm</a>
+          </td>
         </tr>
         <%}); %>
       </tbody>
